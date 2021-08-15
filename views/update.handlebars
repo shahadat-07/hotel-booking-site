@@ -1,0 +1,43 @@
+{{>header}}
+
+<div class="container">
+    <div class="row">
+        {{#each roomList}}
+        {{#each this}}
+        {{#if description}}
+        <div class="col-md-4 col-sm-6 g-4">
+            <div class="card">
+                <img class=" card-img-top img-fluid" src={{image}} alt="Card image cap">
+                <div class="card-body">
+                    <form>
+                        <h3 class="card-title"> {{roomTitle}}</h3>
+                        <h6 class="card-title">Location : {{location}}</h6>
+                        <p class="card-text">Cost Per Night : {{costPerNight}} CAD</p>
+                        <p class="card-text"> {{description}}</p>
+                        <button class="btn btn-danger" type="submit"
+                            onclick="handleDelete(event,'{{_id}}')">Delete This</button>
+                        <a href="/letsUpdate/{{_id}}" class="btn btn-primary">Update Hotel </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{/each}}
+        {{/each}}
+    </div>
+    <script>
+        function handleDelete(event, id) {
+            fetch(`/delete/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(result => {
+                    if (result) {
+                        event.target.parentNode.style.display = "none"
+                    }
+                })
+        }
+    </script>
+</div>
+
+{{>footer}}

@@ -1,0 +1,43 @@
+{{>header}}
+
+<div class="container">
+    <div class="row">
+        <select class="form-select mb-5" name="text" id="located">
+            <option value="Toronto">Search By Room Location</option>
+            <option value="Victoria">Victoria</option>
+            <option value="Hamilton">Hamilton</option>
+        </select>
+        {{#each roomList}}
+        {{#each this}}
+        {{#if description}}
+        <div class="col-md-4 col-sm-6 g-4">
+            <div class="card">
+                <img class=" card-img-top img-fluid" src={{image}} alt="Card image cap">
+                <div class="card-body">
+                    <h3 class="card-title"> {{roomTitle}}</h3>
+                    <h6 class="card-title">Location : {{location}}</h6>
+                    <p class="card-text">Cost Per Night : {{costPerNight}} CAD</p>
+                    <p class="card-text"> {{description}}</p>
+                    <a href="/hotelDescription/{{_id}}" class="btn btn-primary">See Details and Book</a>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{/each}}
+        {{/each}}
+    </div>
+    <script>
+        document.getElementById("located").onchange = function () {
+            var currentVal = this.value;
+            console.log(currentVal);
+            if (currentVal == 'Victoria') {
+                window.location.href = '/victoriaRoom';
+            }
+            if (currentVal == 'Hamilton') {
+                window.location.href = '/hamiltonRoom';
+            }
+        }
+    </script>
+</div>
+
+{{>footer}}

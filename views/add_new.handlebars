@@ -1,0 +1,38 @@
+{{>header}}
+
+<div class="container">
+    <div class="row">
+        <h1 class="text-center mb-5 text-primary">Add a New Hotel</h1>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form id="add_new" method="post" action="/add" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Room Title</label>
+                    <input type="text" name="roomTitle" class="form-control" id="">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Location</label>
+                    <input type="text" name="location" class="form-control" id="">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Cost Per Night</label>
+                    <input type="number" name="costPerNight" class="form-control" id="">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Description Of The Hotel</label>
+                    <input type="text" name="description" class="form-control" id="">
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Hotel Scenario</label>
+                    <input class="form-control" type="file" name="image">
+                </div>
+                <button type="submit" class="btn btn-primary"> Store in Database and Display</button>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+
+
+    </div>
+</div>
+
+{{>footer}}

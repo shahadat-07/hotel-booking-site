@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row">
+        <header
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                <img class='img-fluid' style="height: 55px"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8JmGc6N7F17Ih9yVafWRamWvDWXYldCiRE0MdA4uuvd17TRluVafVlrHTAXOIhfMDhw&usqp=CAU"
+                    alt="" srcset="">
+            </a>
+
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 link-dark h5">Home</a></li>
+                <li><a href="/room" class="nav-link px-2 link-dark h5">Room Listing</a></li>
+                <li><a href="/dashboard" class="nav-link px-2 link-dark h5">Dashboard</a></li>
+                <li><a id="registration" style="display: block;" href="/registration"
+                        class="nav-link px-2 link-dark h5">User Registration</a></li>
+                <li><a id="loginHide" style="display: block;" href="/login" class="nav-link px-2 link-dark h5">Log
+                        In</a></li>
+                </li>
+                <form action="/logout" method="POST">
+                    <button class="btn btn-outline-info ml-3" id="logout" style="display: none;" onclick="deleteLocal()">Log Out</button>
+                </form>
+            </ul>
+
+            <div class="col-md-3 text-end">
+
+            </div>
+        </header>
+    </div>
+    <script>
+        const existence = JSON.parse((localStorage.getItem("currentLoggedIn")));
+        if (existence) {
+            console.log('User Logged In')
+            document.getElementById('logout').style.display = "block"
+            document.getElementById('registration').style.display = "none"
+            document.getElementById('loginHide').style.display = "none"
+        } else {
+            console.log('Here is no one available')
+        }
+
+
+        function deleteLocal() {
+            window.localStorage.clear();
+        }
+    </script>
+</div>

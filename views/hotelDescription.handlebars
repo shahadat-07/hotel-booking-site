@@ -1,0 +1,354 @@
+{{>header}}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box
+    }
+
+    body {
+        background-color: #eee
+    }
+
+    nav,
+    .wrapper {
+        padding: 10px 50px
+    }
+
+    nav .logo a {
+        color: #000;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-decoration: none
+    }
+
+    nav div.ml-auto a {
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.8rem
+    }
+
+    header {
+        padding: 20px 0px
+    }
+
+    header .active {
+        font-weight: 700;
+        position: relative
+    }
+
+    header .active .fa-check {
+        position: absolute;
+        left: 50%;
+        bottom: -35px;
+        background-color: #fff;
+        font-size: 0.7rem;
+        padding: 5px;
+        border: 1px solid #008000;
+        border-radius: 50%;
+        color: #008000
+    }
+
+    .progress {
+        height: 2px;
+        background-color: #ccc
+    }
+
+    .progress div {
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+    .progress .progress-bar {
+        width: 100%
+    }
+
+    #details {
+        padding: 30px 50px;
+        min-height: 300px
+    }
+
+    input {
+        border: none;
+        outline: none
+    }
+
+    .form-group .d-flex {
+        border: 1px solid #ddd
+    }
+
+    .form-group .d-flex input {
+        width: 95%
+    }
+
+    .form-group .d-flex:hover {
+        color: #000;
+        cursor: pointer;
+        border: 1px solid #008000
+    }
+
+    select {
+        width: 100%;
+        padding: 8px 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px
+    }
+
+    input[type="checkbox"]+label {
+        font-size: 0.85rem;
+        font-weight: 600
+    }
+
+    #address,
+    #cart,
+    #summary {
+        padding: 20px 50px
+    }
+
+    #address .d-md-flex p.text-justify,
+    #register p.text-muted {
+        margin: 0
+    }
+
+    #register {
+        background-color: #d9ecf2
+    }
+
+    #register a {
+        text-decoration: none;
+        color: #333
+    }
+
+    #cart,
+    #summary {
+        max-width: 500px
+    }
+
+    .h6 {
+        font-size: 1.2rem;
+        font-weight: 700
+    }
+
+    .h6 a {
+        text-decoration: none;
+        font-size: 1rem
+    }
+
+    .item img {
+        object-fit: cover;
+        border-radius: 5px
+    }
+
+    .item {
+        position: relative
+    }
+
+    .number {
+        position: absolute;
+        font-weight: 800;
+        color: #fff;
+        background-color: #0033ff;
+        padding-left: 7px;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        width: 25px;
+        height: 25px;
+        top: -5px;
+        right: -5px
+    }
+
+    .display-5 {
+        font-size: 1.2rem
+    }
+
+    #cart~p.text-muted {
+        margin: 0;
+        font-size: 0.9rem
+    }
+
+    tr.text-muted td {
+        border: none
+    }
+
+    .fa-minus,
+    .fa-plus {
+        font-size: 0.7rem
+    }
+
+    .table td {
+        padding: 0.3rem
+    }
+
+    .btn.text-uppercase {
+        border: 1px solid #333;
+        font-weight: 600;
+        border-radius: 0px
+    }
+
+    .btn.text-uppercase:hover {
+        background-color: #333;
+        color: #eee
+    }
+
+    .btn.text-white {
+        background-color: #66cdaa;
+        border-radius: 0px
+    }
+
+    .btn.text-white:hover {
+        background-color: #3cb371
+    }
+
+    .wrapper .row+div.text-muted {
+        font-size: 0.9rem
+    }
+
+    .mobile,
+    #mobile {
+        display: none
+    }
+
+    .buttons {
+        vertical-align: text-bottom
+    }
+
+    #register {
+        width: 50%
+    }
+</style>
+<div class="container">
+    {{#each roomList}}
+    {{#if description}}
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <img class="card-img-top img-fluid" src="/{{this.image}}" alt="Card image cap">
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="mt-5">
+        <header>
+            <div class="d-flex justify-content-center align-items-center pb-3">
+                <div class="px-sm-5 h3 px-2 active">BOOKING CART <span class="fas fa-check"></span> </div>
+                {{!-- <div class="px-sm-5 px-2">CHECKOUT</div>
+                <div class="px-sm-5 px-2">FINISH</div> --}}
+            </div>
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+            </div>
+        </header>
+        <div class="wrapper">
+            <div class="h5 large">Place Information</div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mobile h5">Place Information</div>
+                    <div id="details" class="bg-white rounded pb-5">
+                        <input type="hidden" id="cost" name="cost" value={{this.costPerNight}}>
+                        <div class="form-group"> <label class="text-muted">Hotel Name</label>
+                            <p class="form-control">{{roomTitle}}</p>
+                        </div>
+                        <div class="form-group"> <label class="text-muted">Hotel Description</label>
+                            <p class="form-control">{{description}}</p>
+                        </div>
+                        <div class="row pt-lg-3 pt-2 buttons mb-sm-0 mb-2">
+                            <div class="col-md-6">
+                                <a class="btn btn-outline-dark text-uppercase" href="/room">back to room list page</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ">
+                    <div id="cart" class="bg-white rounded">
+                        <form action="/bookingConfirm" method="POST">
+                            <div class="d-flex justify-content-between align-items-center mb-5">
+                                <div class="h6">Cart Summary</div>
+                            </div>
+                            <textarea style="display: none;" id="hotelName" name="hotelName" class="form-control"
+                                rows="1">{{this.roomTitle}}</textarea>
+                            <div id="user">
+
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="h5">Cost Per Night</div>
+                                <div class="ml-auto font-weight-bold">${{this.costPerNight}}</div>
+                            </div>
+                            <div class="">
+                                <p align=""> <b> From </b>
+                                    <input class="form-control" name="start" type="date" id="from" required>
+                                <p align=""> <b> To </b>
+                                    <input onchange="daysDifference()" class="form-control" name="end" type="date"
+                                        id="to" required>
+                                    <br>
+                                </p>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="h6">Total Days Selected</div>
+                                {{!-- <div class="ml-auto font-weight-bold" id="totalDays"></div> --}}
+                                <textarea style="width: 90px;" name="totalDays" class="ml-auto font-weight-bold pl-3"
+                                    id="totalDays" rows="1"></textarea>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="h6">Total</div>
+                                {{!-- <div class="ml-auto font-weight-bold" id="totalCost"></div> --}}
+                                <textarea style="width: 90px;" name="totalCost" class="ml-auto font-weight-bold pl-1"
+                                    id="totalCost" rows="1"></textarea>
+                            </div>
+                            <button class="btn btn-outline-dark mt-3 text-uppercase" type="submit">Pay and Book
+                                Room</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    {{/each}}
+    <script>
+        function daysDifference() {
+            //define two variables and fetch the input from HTML form  
+            const from = document.getElementById("from").value;
+            const to = document.getElementById("to").value;
+            const cost = document.getElementById("cost").value;
+            const totalDays = document.getElementById("totalDays");
+            const totalCost = document.getElementById("totalCost");
+
+            //define two date object variables to store the date values  
+            const date1 = new Date(from);
+            const date2 = new Date(to);
+
+            //calculate time difference  
+            const time_difference = date2.getTime() - date1.getTime();
+
+            //calculate days difference by dividing total milliseconds in a day  
+            const result = time_difference / (1000 * 60 * 60 * 24);
+
+            totalDays.innerHTML = result;
+
+            totalCost.innerHTML = result * cost;
+        }
+
+        const user = JSON.parse((localStorage.getItem("currentLoggedIn")));
+        var input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "user";
+        input.id = "user";
+        input.value = user.email;
+        document.getElementById("user").appendChild(input);
+
+        var input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "name";
+        input.id = "user";
+        input.value = user.name + ' ' + user.surname;
+        document.getElementById("user").appendChild(input);
+
+
+        const hotelName = document.getElementById("hotelName").value;
+    </script>
+</div>
+{{>footer}}

@@ -1,0 +1,14 @@
+.booking{
+    -webkit-box-shadow: 5px 5px 10px 3px #000000; 
+    box-shadow: 0px 0px 15px -5px #000000;
+    border-radius: 5px;
+}
+h1{
+    color: red;
+    font-family: 'Font Awesome 5 Brands';
+    font-weight: 600;
+}
+.video{
+    height:500px!important;
+    width:700px!important;
+}

@@ -1,0 +1,141 @@
+{{>header}}
+
+<div class="container">
+    <h1 class="text-center my-5">Welcome To The Airbnb World</h1>
+    <div class="row p-4">
+        <div class="col-md-6 d-flex align-items-center booking">
+            <div id="booking" class="section">
+                <div class="section-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="booking-form">
+                                <div class="form-header">
+                                    <h4>Book unique places to stay and things to do</h4>
+                                </div>
+                                <select class="form-select mb-5 mt-4" name="text" id="located">
+                                    <option value="Toronto">Select Room Location</option>
+                                    <option value="Toronto">Toronto</option>
+                                    <option value="Victoria">Victoria</option>
+                                    <option value="Hamilton">Hamilton</option>
+                                </select>
+                                {{!-- <div class="form-group"> <input class="form-control" type="text"
+                                        placeholder="Anywhere"> <span class="form-label">WHERE</span>
+                                </div> --}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <input class="form-control mb-2" type="date">
+                                            <span class="form-label">Check In</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <input class="form-control mb-2" type="date">
+                                            <span class="form-label">Check out</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group"> <select class="form-control mb-2">
+                                                <option value="" selected hidden>No Of Guest</option>
+                                                <option>1 Guest</option>
+                                                <option>2 Guest</option>
+                                                <option>3 Guest</option>
+                                            </select> <span class="select-arrow"></span> <span
+                                                class="form-label">Guest</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="float-end">
+                                    <button onclick="search()" class="btn btn-primary">SEARCH</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 banner">
+            <img class="img-fluid"
+                src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/2cb61046040553.5846107d8e6c4.png" alt=""
+                srcset="">
+        </div>
+    </div>
+    <div class="row mt-5">
+        <img src="https://i.pinimg.com/originals/a4/4d/ce/a44dce85a4455858fd897f2b39ee6a65.jpg" alt="" srcset="">
+    </div>
+    <div class="row mt-5 pb-5">
+        <hr>
+        <h2>Why Airbnb</h2>
+        <h1>Discover Experiences</h1>
+        <h3>Unique activities with local experts</h3>
+        <div class="col-md-4">
+            <img class="img-fluid mb-4 mt-5"
+                src="https://lh3.googleusercontent.com/proxy/eHSI62XSGpxc7pQ71qmtZCVFmp-tejFe6HOd8U2wKx-htOV-oCwLjGlyMw5hilhp2gfDS-VHqHdWlE25cKndXhtNvmx1GcXiNOIu0MvU4B4JXFNTrkrZwtexOHiXbukyo-hGlG7n_onu7Xg"
+                alt="" srcset="">
+            <h4>Cultural Song Presentation</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tenetur deserunt enim architecto. Vitae
+                ducimus mollitia placeat, soluta enim consequatur?
+            </p>
+        </div>
+        <div class="col-md-4">
+            <img class="img-fluid mb-4 mt-5"
+                src="https://wander-lush.org/wp-content/uploads/2020/12/UNESCO-food-culture-CanvaPro-Singapore-hawker-market.jpg"
+                alt="" srcset="">
+            <h4>Food Presentation</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tenetur deserunt enim architecto. Vitae
+                ducimus mollitia placeat, soluta enim consequatur?
+            </p>
+        </div>
+        <div class="col-md-4">
+            <img class="img-fluid mb-4 mt-5"
+                src="http://1.bp.blogspot.com/-fGZjQyQ_4UU/UKQW8nB3FfI/AAAAAAAAB3U/9B3yMw7E3KU/s1600/edited-version-copy.jpg"
+                alt="" srcset="">
+            <h4>Relaxed Environment</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore tenetur deserunt enim architecto. Vitae
+                ducimus mollitia placeat, soluta enim consequatur?
+            </p>
+        </div>
+    </div>
+    <div class="row mt-5 d-flex">
+        {{!-- <div class="col-md-3"></div> --}}
+        <div class="col-md-6">
+            <h1 class="mb-5">Discover More</h1>
+            <div class="embed-responsive embed-responsive-16by9 video">
+                <iframe class="" src="https://www.youtube.com/embed/c-y69rCGx_8" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+
+
+    </div>
+
+</div>
+<script>
+
+    function search() {
+        selectElement = document.querySelector('#located');
+        currentVal = selectElement.value;
+        console.log(currentVal)
+        if (currentVal == 'Toronto') {
+            window.location.href = '/torontoRoom';
+        }
+        if (currentVal == 'Victoria') {
+            window.location.href = '/victoriaRoom';
+        }
+        if (currentVal == 'Hamilton') {
+            window.location.href = '/hamiltonRoom';
+        }
+    }
+</script>
+</div>
+
+
+{{!-- document.getElementById("located").onchange = function () {
+var currentVal = this.value; --}}
+{{!--
+{{!-- --}}
+
+{{>footer}}

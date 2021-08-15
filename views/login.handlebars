@@ -1,0 +1,84 @@
+{{>header}}
+
+<style>
+    #password-err {
+        display: none;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 text-center">
+            <form id="login" class="form-signin">
+                <img class="mb-4 img-fluid"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8JmGc6N7F17Ih9yVafWRamWvDWXYldCiRE0MdA4uuvd17TRluVafVlrHTAXOIhfMDhw&usqp=CAU"
+                    alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Enter Your Email"
+                    required>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password"
+                    required>
+                <p style="display: none;" id="warning" class="text-danger text-left my-3">Sorry, you entered the wrong
+                    username and/or password</p>
+                <div class="checkbox my-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+                <h3 class="text-center py-3">OR</h3>
+                <a class="btn btn-primary btn-lg btn-block" href="/registration">Register</a>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <script>
+        const form = document.getElementById('login')
+        form.addEventListener('submit', login)
+
+        async function login(event) {
+            event.preventDefault()
+            const email = document.getElementById('email').value
+            const password = document.getElementById('password').value
+
+            const result = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            }).then((res) => res.json())
+            const user = result.user;
+            if (result.status === 'ok' && user.role === 'admin') {
+                localStorage.setItem('currentLoggedIn', JSON.stringify(user));
+                window.location.href = '/dashboard';
+                alert('Success')
+            }
+            if (result.status === 'ok' && user.role === 'regular') {
+                localStorage.setItem('currentLoggedIn', JSON.stringify(user));
+                window.location.href = '/regularDashboard';
+                alert('Success')
+            }
+            else {
+                document.getElementById('warning').style.display = "block"
+                document.getElementById('email').style.borderColor = "red"
+                document.getElementById('password').style.borderColor = "red"
+            }
+        }
+    </script>
+</div>
+{{>footer}}
+
+user1@gmail.com
+Password1
+admin
+
+user2@gmail.com
+Password2
+regular

@@ -1,0 +1,52 @@
+{{>header}}
+
+<div class="container">
+    <div class="row">
+        <h1 class="text-center mb-5">Update Hotel Details Here</h1>
+        {{#each roomList}}
+        {{#if description}}
+
+        <form>
+            {{!-- <input class="form-control" type="file" name="image" value={{this.image}}><br /> --}}
+            <textarea id="title" name="title" class="form-control"> {{this.roomTitle}} </textarea><br />
+            <textarea id="located" name="located" class="form-control"> {{this.location}} </textarea><br />
+            <input class="form-control" id="cost" name="cost" type="text" value={{this.costPerNight}}><br />
+            <textarea id="brief" name="brief" class="form-control"> {{this.description}} </textarea><br />
+            <a class="btn btn-info" type="submit" onclick="handleUpdate('{{_id}}')">Update This</a>
+        </form>
+    </div>
+</div>
+{{/if}}
+{{/each}}
+</div>
+<script>
+    function handleUpdate(id) {
+        //console.log(id)
+        const title = document.getElementById('title').value
+        const located = document.getElementById('located').value;
+        const cost = document.getElementById('cost').value;
+        const brief = document.getElementById('brief').value;
+        //console.log(title, cost);
+        fetch(`/updateData/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title,
+                located,
+                cost,
+                brief
+            })
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+                window.location.href = '/updatePage';
+            })
+
+
+    }
+</script>
+</div>
+{{>footer}}

@@ -1,0 +1,160 @@
+{{>header}}
+<style>
+    .social-link {
+        color: #00AEAF !important;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 contact_form">
+                <form action="/sendemail" method="POST">
+                    <h5 class="py-3 text-center"> Sign up with <a href="#" class="social-link">Facebook</a> or <a
+                            href="#" class="social-link">Google</a> </h5>
+                    <div class="contact_form__inputGroup">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address"
+                            required /><br />
+                    </div>
+                    {{#if error}}
+                    <p class="alert alert-danger">{{error}}</p>
+                    {{/if}}
+                    {{!-- <p id="warning" class="text-danger">Email already in use</p> --}}
+                    <div class="contact_form__inputGroup">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="First Name"
+                            required /><br />
+                    </div>
+                    <div class="contact_form__inputGroup">
+                        <input type="text" class="form-control" id="surname" name="surname" placeholder="Last Name"
+                            required /><br />
+                    </div>
+                    {{!-- <p class="text-secondary">Select Your Role Here</p> --}}
+                    <select class="form-control" name="role" id="role">
+                        <option value="regular">Regular</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <input type="password" name="password" id="password" class="form-control mt-3 font"
+                        placeholder="Create Password" required><br>
+                    <p class="text-danger" id="password-err">password should be within 6 to 12 characters and the
+                        password must have at least one uppercase letter, one lowercase letter, one number and one special character</p>
+                    <h4 class="text-left">Birthday</h4>
+                    <p class="text-secondary mb-2 text-left">To sign up, you need to be atleast 18. Other people who use
+                        Airbnb
+                        won't see your birthday</p>
+                    <div class="d-flex my-3">
+                        <select class="form-select form-control" aria-label="Default select example">
+                            <option value="1" selected>January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="3">April</option>
+                            <option value="3">May</option>
+                            <option value="3">June</option>
+                            <option value="3">July</option>
+                            <option value="3">August</option>
+                            <option value="3">September</option>
+                            <option value="3">October</option>
+                            <option value="3">November</option>
+                            <option value="3">December</option>
+                        </select>
+                        <select class="form-select form-control bear-dates" aria-label="Default select example">
+                            <option selected>Date</option>
+                        </select>
+                        <select class="form-select form-control bear-years" aria-label="Default select example">
+                            <option selected>Year</option>
+                        </select>
+                    </div>
+                    <p class="text-secondary text-left">We'll send you marketing promotions,special offer,promotion and
+                        policy
+                        update via email.</p>
+                    <button class="contact_form__submitBtn btn btn-block btn-danger" type="submit">Sign Up</button>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+    <script>
+        // Registration Form Validation
+        var password = document.getElementById('password');
+        var loginForm = document.getElementById('login-form');
+        var passwordErr = document.getElementById('password-err')
+
+        password.addEventListener('input', function (e) {
+            var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,12}$/;
+            var currentPass = e.target.value;
+            var valid = regex.test(currentPass);
+
+            if (valid) {
+                passwordErr.style.display = 'none';
+            } else {
+                passwordErr.style.display = 'block';
+            }
+
+        })
+
+        ///////-------------- Calender Start -----------//////////////
+
+        //Date method
+        function dates(tags) {
+
+            if (tags == '')
+            //If the dates('') paramenter is empty, add no tags
+            {
+                var dates = "";
+                var i;
+                for (i = 1; i < 32; i++) {
+                    dates += i;
+                }
+            }
+            else
+            //If the dates('option') has paramenter, add the tags to it
+            {
+                var dates = "";
+                var i;
+                for (i = 1; i < 32; i++) {
+                    dates += "<" + tags + ">" + i + "</" + tags + ">";
+                }
+            }
+
+            //You can call the class multiple times						
+            var multiple_list = document.getElementsByClassName("bear-dates");
+            for (i = 0; i < multiple_list.length; i++) {
+                multiple_list[i].innerHTML = dates;
+            }
+        }
+
+        dates('option');
+
+        //Year method
+        function years(tags, startY, endY) {
+
+            if (tags == '')
+            //If the years('') paramenter is empty, add no tags
+            {
+                var years = "";
+                for (i = startY; i < endY + 1; i++) {
+                    years += i;
+                }
+            }
+            else
+            //If the years('option') has paramenter, add the tags to it
+            {
+                var years = "";
+                for (i = startY; i < endY + 1; i++) {
+                    years += "<" + tags + ">" + i + "</" + tags + ">";
+                }
+            }
+
+            //You can call the class multiple times						
+            var multiple_list = document.getElementsByClassName("bear-years");
+            for (i = 0; i < multiple_list.length; i++) {
+                multiple_list[i].innerHTML = years;
+            }
+        }
+        years('option', 2000, 2021);
+    </script>
+</body>
+
+</html>
+{{>footer}}

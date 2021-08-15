@@ -81,7 +81,7 @@ exports.registerWithSendEmail = async (formValue) => {
 exports.sendEmail = (req, res) => {
     const { name, surname, email, password, role } = req.body;
 
-    const from = "syedahsansirat07@gmail.com";
+    const from = "shahadat.hossen.web@gmail.com";
     const to = `${email}`;
 
     const subject = "Confirmation Mail ";
